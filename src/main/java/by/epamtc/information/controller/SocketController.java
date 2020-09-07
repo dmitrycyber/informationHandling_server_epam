@@ -2,6 +2,7 @@ package by.epamtc.information.controller;
 
 import by.epamtc.information.configuration.annotation.InjectByType;
 import by.epamtc.information.configuration.annotation.Singleton;
+import by.epamtc.information.service.RemoveSentencesFixedLengthService;
 import by.epamtc.information.service.TextParserService;
 
 import java.io.*;
@@ -14,6 +15,9 @@ import java.util.List;
 public class SocketController {
     @InjectByType
     private TextParserService textParserService;
+
+    @InjectByType
+    private RemoveSentencesFixedLengthService removeSentencesFixedLengthService;
 
     private static final int port = 4004;
     private static List<ServerThread> serverList = new ArrayList<>();
@@ -29,7 +33,10 @@ public class SocketController {
                 System.out.println("Client connected!");
 
                 try {
-                    ServerThread serverThread = new ServerThread(socket, textParserService);
+                    ServerThread serverThread = new ServerThread(
+                            socket,
+                            textParserService,
+                            removeSentencesFixedLengthService);
                     serverList.add(serverThread);
                 }
                 catch (IOException e) {

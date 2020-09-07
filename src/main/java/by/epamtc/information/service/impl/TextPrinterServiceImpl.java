@@ -14,7 +14,7 @@ public class TextPrinterServiceImpl implements TextPrinterService {
         for (TextElement textElement : text.getTextElements()) {
             if (textElement.getClass() == Title.class) {
                 Title title = (Title) textElement;
-                Sentence sentence1 = title.getSentence();
+                Sentence sentence1 = title.getSentences().get(0);
                 for (SentenceElement sentenceElement : sentence1.getSentenceElements()) {
                     if (sentenceElement.getClass() == Word.class) {
                         System.out.print(sentenceElement.getString() + " ");

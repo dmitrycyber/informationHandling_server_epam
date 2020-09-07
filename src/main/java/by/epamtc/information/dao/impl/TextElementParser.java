@@ -39,9 +39,15 @@ public class TextElementParser implements Parser {
             if (titleText != null){
                 Title title = new Title();
                 List<SentenceElement> sentenceElements = parseSentenceElements(titleText);
+
+                List<Sentence> sentenceList = new ArrayList<>();
+
                 Sentence sentence = new Sentence();
+
                 sentence.setSentenceElements(sentenceElements);
-                title.setSentence(sentence);
+                sentenceList.add(sentence);
+
+                title.setSentences(sentenceList);
                 textElements.add(title);
             }
             if (paragraphText != null){
